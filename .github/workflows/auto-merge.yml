@@ -24,7 +24,7 @@ jobs:
         if: ${{ failure() }}
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: 'CU241BNRH'
+          channel-id: ${{ env.SLACK_CHANNEL_ID }}
           payload: |
             {
               "text": "ワークフローが失敗しました。URL: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}"
