@@ -1,7 +1,7 @@
 name: auto-merge
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - master
 
@@ -20,3 +20,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: merge
         run: aaa
+      - name: Notify slack when job failed
+        if: ${{ failure() }}
+        run: echo "failed"
