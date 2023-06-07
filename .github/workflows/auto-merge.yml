@@ -27,7 +27,6 @@ jobs:
           channel-id: ${{ env.SLACK_CHANNEL_ID }}
           payload: |
             {
-              "text": "ワークフローが失敗しました。URL: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}",
               "blocks": [
                 {
                   "type": "section",
