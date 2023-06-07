@@ -22,4 +22,21 @@ jobs:
         run: aaa
       - name: Notify slack when job failed
         if: ${{ failure() }}
-        run: echo "failed"
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "ワークフローが失敗しました。URL: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}",
+              "blocks": [
+                {
+                  "type": "context",
+                  "elements": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "Author: <https://github.com/${{ github.event.sender.login }}|@${{ github.event.sender.login }}>"
+                    }
+                  ]
+                }
+              ]
+            }
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }
