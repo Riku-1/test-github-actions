@@ -35,15 +35,6 @@ jobs:
                     "type": "mrkdwn",
                     "text": "マージしたPR: ${{ job.status }}\n\n${{ github.event.pull_request.html_url }}"
                   }
-                },
-                {
-                  "type": "context",
-                  "elements": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "Author: <https://github.com/${{ github.event.sender.login }}|@${{ github.event.sender.login }}>"
-                    }
-                  ]
                 }
               ]
             }
