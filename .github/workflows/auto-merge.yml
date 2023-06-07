@@ -24,20 +24,10 @@ jobs:
         if: ${{ failure() }}
         uses: slackapi/slack-github-action@v1.24.0
         with:
+          channel-id: 'CU241BNRH'
           payload: |
             {
-              "text": "ワークフローが失敗しました。URL: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}",
-              "blocks": [
-                {
-                  "type": "context",
-                  "elements": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "Author: <https://github.com/${{ github.event.sender.login }}|@${{ github.event.sender.login }}>"
-                    }
-                  ]
-                }
-              ]
+              "text": "ワークフローが失敗しました。URL: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }
