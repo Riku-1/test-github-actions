@@ -27,13 +27,27 @@ jobs:
           channel-id: ${{ env.SLACK_CHANNEL_ID }}
           payload: |
             {
-              "blocks": [
+              "text": "ワークフローが失敗しました。URL: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}",
+              "attachments": [
                 {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "マージしたPR: ${{ job.status }}\n\n${{ github.event.pull_request.html_url }}"
-                  }
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "マージしたPR: ${{ job.status }}\n\n${{ github.event.pull_request.html_url }}"
+                      }
+                    },
+                    {
+                      "type": "context",
+                      "elements": [
+                        {
+                          "type": "mrkdwn",
+                          "text": "Author: <https://github.com/${{ github.event.sender.login }}|@${{ github.event.sender.login }}>"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
